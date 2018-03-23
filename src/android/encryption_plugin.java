@@ -1,0 +1,40 @@
+package com.gi.encryp_decript;
+
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CallbackContext;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+/**
+ * This class echoes a string called from JavaScript.
+ */
+public class encryption_plugin extends CordovaPlugin {
+
+    @Override
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        if (action.equals("encrypt")) {
+            String message = args.getString(0);
+            callbackContext.success(AES.encrypt(message));
+            return true;
+        }else if (action.equals("encrypt_no_url_encode")) {
+            String message = args.getString(0);
+            callbackContext.success(AES.encrypt_no_url_encode(message));
+            return true;
+        }else if (action.equals("decrypt")) {
+            String message = args.getString(0);
+            callbackContext.success(AES.decrypt(message));
+            return true;
+        }
+        return false;
+    }
+
+    // private void coolMethod(String message, CallbackContext callbackContext) {
+    //     if (message != null && message.length() > 0) {
+    //         callbackContext.success(message);
+    //     } else {
+    //         callbackContext.error("Expected one non-empty string argument.");
+    //     }
+    // }
+}

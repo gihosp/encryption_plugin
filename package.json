@@ -1,0 +1,25 @@
+{
+  "name": "encryption_plugin",
+  "version": "0.0.1",
+  "description": "ionic plugin for AES Encryption",
+  "cordova": {
+    "id": "com.gi.encryp_decript",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "gi",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gihosp/encryption_plugin.git"
+  },
+  "homepage": "https://github.com/gihosp/encryption_plugin.git",
+  "bugs": {
+    "url": "https://github.com/gihosp/encryption_plugin/issues"
+  }
+}
