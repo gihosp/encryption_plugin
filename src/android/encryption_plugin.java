@@ -36,7 +36,7 @@ public class encryption_plugin extends CordovaPlugin {
             callbackContext.success(AES.decrypt(message));
             return true;
         }
-        else if (action.equals("decrypt")) {
+        else if (action.equals("launchapp")) {
             Log.i("applaunch_plugin_package",message);
             callbackContext.success(this.LaunchApp(message));
             return true;
