@@ -7,10 +7,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageInfo;
+import android.util.Log;
+
 /**
  * This class echoes a string called from JavaScript.
  */
 public class encryption_plugin extends CordovaPlugin {
+    
+    private String launchSuccessMsg = "App Launched";
+    private String launchFailMsg = "Package Not Installed";
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -27,7 +36,32 @@ public class encryption_plugin extends CordovaPlugin {
             callbackContext.success(AES.decrypt(message));
             return true;
         }
+        else if (action.equals("decrypt")) {
+            Log.i("applaunch_plugin_package",message);
+            callbackContext.success(this.LaunchApp(message));
+            return true;
+        }
         return false;
+    }
+    
+        public String LaunchApp(String packageName) {
+            
+        try {
+            // Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+            PackageManager manager = cordova.getActivity().getApplicationContext().getPackageManager();
+            Intent LaunchIntent = manager.getLaunchIntentForPackage(packageName);
+            if (LaunchIntent != null) {
+              this.cordova.getActivity().startActivity(LaunchIntent);
+                return launchSuccessMsg;
+            } else {
+                return launchFailMsg;
+                // Toast.makeText(MainActivity.this, "There is no package available in android", Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            Log.i("applaunch_plugin","launchIntent"+e.getMessage());
+
+        }
+        return null;
     }
 
     // private void coolMethod(String message, CallbackContext callbackContext) {
