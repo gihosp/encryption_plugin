@@ -12,6 +12,10 @@ encryption_plugin.prototype.decrypt = function (options, successCallback,errorCa
   cordova.exec(successCallback, errorCallback, "encryption_plugin", "decrypt",[options]);
 };
 
+encryption_plugin.prototype.launchapp = function (options, successCallback,errorCallback) {
+  cordova.exec(successCallback, errorCallback, "encryption_plugin", "launchapp",[options]);
+};
+
 encryption_plugin.install = function () {
   if (!window.plugins) {
     window.plugins = {};
